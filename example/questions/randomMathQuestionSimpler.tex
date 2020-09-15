@@ -1,0 +1,50 @@
+% Create random variables, then define the mathematical relation between them
+% Variables:
+\pgfmathrandominteger{\rA}{2}{5}
+\pgfmathrandominteger{\rB}{2}{10}
+% 
+\pgfmathsetmacro\rAA{\rA * \rB}
+\pgfmathsetmacro\rBB{\rA + \rB}
+\pgfmathsetmacro\rCC{\rA - \rB}
+\pgfmathsetmacro\rDD{\rAA - 1}
+
+\newcommand{\dispint}[1]{\ensuremath{\pgfmathprintnumber{ #1}}}
+
+
+
+% Simple math problem
+\begin{question}{mul1} \pts{6}
+  Please compute the following:
+  \[ \rA * \rB = ? \]
+  
+  \begin{choices}
+    \correctchoice{ \dispint{\rAA}}
+    \wrongchoice{\dispint{\rBB} }
+    \wrongchoice{\dispint{\rCC} }
+    \wrongchoice{\dispint{\rDD} }
+  \end{choices}
+\end{question}
+
+%%%%%%
+\pgfmathrandominteger{\rA}{2}{5}
+\pgfmathrandominteger{\rB}{2}{10}
+% 
+\pgfmathsetmacro\rAA{\rA * \rB}
+\pgfmathsetmacro\rBB{\rA + \rB}
+\pgfmathsetmacro\rCC{\rA - \rB}
+\pgfmathsetmacro\rDD{\rAA - 1}
+
+
+
+% Simple math problem
+\begin{question}{mul2} \pts{6}
+  If you want to see a wrong answer, answer this one wrong. (Partial credit if you are very close to the actual answer)
+  \[ \rA * \rB = ? \]
+  
+  \begin{choices}
+    \correctchoice{\dispint{\rAA}}
+    \wrongchoice{\dispint{\rBB} }
+    \wrongchoice{\dispint{\rCC} }
+    \wrongchoice{\dispint{\rDD} } \scoring{5}
+  \end{choices}
+\end{question}

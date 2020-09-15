@@ -1,0 +1,89 @@
+\message{ !name(main.tex)}
+\message{ !name(main.tex) !offset(23) }
+
+%\newcommand{\QuestionBaseDir}{\ExamBaseDi\r/questions} % base directory -- specific to exam/homework
+\newcommand{\CommonRootDir}{\ClassBaseDir/..}
+%
+\newcommand\inputQ[1]{\input{\QuestionBaseDir/#1}}
+
+% Define Variables
+% For an Exam:
+\newcommand{\examtitle}{Sample Handout}
+\newcommand{\courseterm}{Summer 2019}
+\newcommand{\courseid}{ECE 999}
+\newcommand{\coursetitle}{Engineering Programming I}
+\newcommand{\instructor}{Stewart J.~Thomas}
+\newcommand{\examstarttime}{12:00 pm}
+\newcommand{\examendtime}{12:01 pm}
+\newcommand{\examdate}{May 12, 2019}
+\newcommand{\examduration}{10 minutes}
+%
+\newcommand{\additionalinstructions}{%
+  \textbf{\EmptyInstructions{}}%
+
+  % Example for including a quote:
+  \emph{My goal wasn't to make a ton of money. It was to build good computers. I only started the company when I realized I could be an engineer forever.}\hfill --- Steve Wozniak
+}
+% -- Good and Bad mark examples
+\newcommand{\goodmarkexample}{ \raisebox{-.5ex}{\includegraphics[height=2ex]{\QuestionBaseDir/figures/goodmark.png}}}
+\newcommand{\badmarkexample}{ \raisebox{-.5ex}{\includegraphics[height=2ex]{\QuestionBaseDir/figures/badmark.png}}}
+\newcommand{\adminmarkexample}{ \raisebox{-.5ex}{\includegraphics[height=3ex]{\QuestionBaseDir/figures/PenKeepout.png}}}
+\newcommand{\customAuthorizedAid}{%
+%\bigskip
+\noindent
+\textbf{Summary of Authorized Aid:}\\
+\begin{minipage}{\linewidth}
+  \begin{tabular*}{\linewidth}[t]{llll}
+    %
+    1-page of Note Paper (``cheat sheet'') & \tickno No & \tickyes Yes \\
+    Calculator & \tickyes No & \tickno Yes\\
+    Printouts \& notes & \tickyes No & \tickno Yes \\
+    Access online materials & \tickyes No & \tickno Yes
+  \end{tabular*}
+  \textbf{Unauthorized Aid:}\\
+  You may \textbf{NOT} consult with any other person besides the professor while completing this exam, nor may you consult any other person’s course materials.
+\end{minipage}%
+
+\vspace{1ex}
+\noindent\textbf{Reminder:}\\
+\begin{minipage}{\linewidth}
+Please fill in your answers completely.
+\begin{tabular}{|c|c|}
+  \hline
+  GOOD! & BAD! \\
+  \goodmarkexample & \badmarkexample \\
+  \hline
+\end{tabular}
+
+For free-response questions, do not write in the grayed-out areas. Example:
+\begin{tabular}{|c|}\hline  \adminmarkexample \\ \hline
+\end{tabular}
+
+%(Questions are each worth ??? points unless otherwise noted.) % POINT Example
+\end{minipage}
+
+}
+
+%% OPTIONS:
+\AMCopenOpts{framerule=0pt} % No line on the free response question frames
+
+% Define conditionals
+\newif\ifexam
+\examtrue
+\newif\ifgroupwork
+\groupworkfalse
+\newif\ifCustomAuthorizedAid
+\CustomAuthorizedAidtrue
+
+% define scoring strategyx
+\scoringDefaultS{mz=2} % you either get 2 points or zero points
+\scoringDefaultM{haut=2} % 2 points for full credit, mistakes count against you
+\scoring{allowempty=2}
+\newcommand{\EmptyInstructions}{You may leave \textbf{2} question(s) blank with no penalty.}
+
+\input{\ExamBaseDir/processExams}
+
+
+\message{ !name(main.tex) !offset(20) }
+
+\end{document}

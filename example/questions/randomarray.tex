@@ -1,0 +1,29 @@
+%% Question
+%% Shows creating a random array with random index
+%% In answers, random integers are created
+% 
+%% Variables:
+\def\myarray{{255, 254, 253, 252, 251, 250, 249, 248}}  % Random array
+\def\myarrayU{{  -1, -2,  -3,  -4,  -5,  -6,  -7,  -8}}  % Random array (with answers, etc)
+% myarray and myarrayU have matching indices
+\pgfmathrandominteger{\idx}{0}{7} % Create the random index
+\pgfmathsetmacro\result{\myarray[\idx]} % Create answer for problem
+\pgfmathsetmacro\resultU{\myarrayU[\idx]} % Create suite of answers for problem
+%
+\pgfmathsetmacro\resultp{int(\myarrayU[\idx])}
+
+%\def\myarrayWRONG{{29, 28, 27, 26, 25, 24, 23, 22, 21, 20}} % Example of creating array of wrong answwers
+\def\limit{-120} % But instead, use limits for a random integer
+\def\limitp{240}
+
+\begin{question}{ramdonarray} \pts{4} %--> Use this for the number of points the problem is worth
+Convert the 8-bit, twos complement binary number \printBinary{\result}$_2$ from binary to decimal.
+
+\begin{choices}
+  \correctchoice{\resultp}
+  \wrongchoice{\pgfmathrandominteger{\idy}{\limit}{-10} \idy} % negative
+  \wrongchoice{\pgfmathrandominteger{\idy}{\limit}{-10} \idy} % negative
+  \wrongchoice{\pgfmathrandominteger{\idy}{1}{\limitp} \idy}
+  \wrongchoice{\pgfmathrandominteger{\idy}{0}{\limitp} \idy}
+\end{choices}
+\end{question}

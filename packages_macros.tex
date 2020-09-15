@@ -1,0 +1,237 @@
+\geometry{letterpaper}
+
+\usepackage{fp}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{wrapfig}
+\usepackage{multicol}
+\usepackage{textcomp}
+\usepackage{tikz}
+\usepackage{bitset}
+\usepackage{graphicx,epstopdf}
+\usepackage{listofitems}
+
+
+% redefine how the questions look
+\def\AMCbeginQuestion#1#2{\par\noindent{\bf #1} #2\hspace*{.5em}}
+\def\multiSymbole{$\clubsuit$}
+
+% add more space between questions
+%\AMCinterIquest=10ex
+\AMCinterBquest=10ex % space between questions
+
+%% CUSTOM COMMANDS
+% a blank line
+%\newcommand{\blank}{$\rule{1cm}{0.15mm}\,\,$}
+% inserts a blank line in questions
+\newcommand{\blank}{$\rule{5em}{1pt}\,\,$}
+% prints out (and sets) the number of points for a question
+\newcounter{totpoints}
+\newcommand{\pts}[1]{\addtocounter{totpoints}{#1} \scoring{mz=#1} (#1 points)\,} 
+% create AMC macro to display points
+%\def\AMCsjtTotalPoints#1{\expandafter{\arabic{totpoints} ... won't work yet
+% prints out yes and no answer with tt font
+\newcommand{\yc}[1]{\correctchoice{\lstinline{#1}}}
+\newcommand{\nc}[1]{\wrongchoice{\lstinline{#1}}}
+
+
+\newcommand{\studentidarea}{%
+\AMCcodeHspace=.35em
+\AMCcodeVspace=0em
+%\AMCcodeBoxSep=.1em
+{\setlength{\parindent}{0pt}%
+%\hspace*{\fill}%
+%Student ID:\hfill\\
+\AMCcode{studentid}{8}%
+\hspace*{\fill}%
+\begin{minipage}[b]{.5\textwidth}%
+\vspace*{.5em} Please enter your student ID to the left and \textbf{PRINT} your first and last name below.
+%and write your first and last names below.
+
+\vspace{3ex}
+
+\hfill\namefield{\fbox{    
+    \begin{minipage}{.9\linewidth}
+      Firstname and lastname:
+      
+      \vspace*{.5cm}\dotfill
+      
+      \vspace*{.5cm}\dotfill
+      \vspace*{1mm}
+    \end{minipage}
+  }}\hfill\vspace{5ex}\end{minipage}\hspace*{\fill}
+
+}
+}
+
+%\setdefaultgroupmode{withreplacement} % fixed randomness
+\setdefaultgroupmode{withoutreplacement} % cyclical randomness
+
+\def\AMCIntervalFormat#1#2{[#1,\,#2)}
+
+
+
+%%% CUSTOM SET FOR CODE LISTING
+\definecolor{mybg}{rgb}{.5, .5, .5}
+
+% Use this so literate appends and doesn't replace!
+\makeatletter
+\def\lst@Literatekey#1\@nil@{\let\lst@ifxliterate\lst@if
+  \expandafter\def\expandafter\lst@literate\expandafter{\lst@literate#1}}
+\makeatother
+% setup language stuff
+\definecolor{ccsword}{RGB}{108,0,60}
+\lstdefinestyle{CCSstyle} {%
+  language=C,
+  basicstyle=\ttfamily\normalsize,
+%  literate={^}{\caret}{1},
+  literate={~}{$\sim$}{1},
+  literate={|}{$\mid$}{1},
+  % keywordstyle=\color{blue}\ttfamily,
+  keywordstyle=\color{ccsword}\ttfamily\bfseries,
+  stringstyle=\color{red}\ttfamily,
+  commentstyle=\color{green!50!black}\ttfamily,
+  %morecomment=[l][\color{blue}]{\#},
+  backgroundcolor = \color{gray!10},
+  framexleftmargin=1em,
+}
+
+\lstdefinestyle{mingw} {%
+  backgroundcolor=\color{white},
+  basicstyle=\ttfamily\footnotesize,
+  breakatwhitespace=false,
+  frame=single,
+  %frame=trBL,
+  keepspaces=true,
+  language=c,
+  numbers=none, %none, left, right
+  numbersep=10pt,
+  numberstyle=\scriptsize\color{mybg},
+  showspaces=false,
+  showstringspaces=false,
+  stepnumber=2,
+}
+  
+\lstset{style=mingw}
+
+
+
+% For clearing DoublePage
+
+\usepackage{ifoddpage}
+%\newcommand{\MYcleardoublepage}{\checkoddpage\ifoddpage\clearpage~\clearpage\else\clearpage\fi}
+\newcommand{\MYcleardoublepage}{\makeatletter%
+        \clearpage%
+        \ifodd\thepage\else%
+          %\ifAMC@automarks\pagestyle{AMCpageEmpty}\fi%
+          \hbox{}\clearpage%
+        \fi%
+        \makeatother%
+}
+
+
+%%%% TAKEN FROM CRUFT:
+% plotting
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{arrows.meta}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=newest}
+% photo-copy safe color
+\pgfplotscreateplotcyclelist{prnok}{%
+{color={rgb,255:red,128;green,128;blue,128}, mark=none, line width=0.5pt}, 
+{color={rgb,255:red,159;green,159;blue,159},mark=none, line width=0.5pt},
+{color={rgb,255:red,191;green,191;blue,191},mark=none, line width=0.5pt},
+}%
+% BW style plot cycles
+\pgfplotscreateplotcyclelist{bw}{%
+  {black!85, mark=none, line width=1.2pt},
+  {black!85, mark=none, line width=1.2pt},
+  {black!85, mark=none, line width=1.2pt}, 
+{black!62,mark=none, line width=1pt},
+{black!40, mark=none, line width=1pt},
+{black, mark=none, line width=1pt, dashed}, 
+{black!55,mark=none, line width=1pt, dashed},
+{black!25, mark=none, line width=1pt, dashed},
+}%
+% MATLAB color plot cycles
+\pgfplotscreateplotcyclelist{matlab}{%
+{color={rgb,1:red,0;green,0.4470;blue,0.7410}, line width=1pt, mark=none},
+{color={rgb,1:red,0.8500;green,0.3250;blue,0.0980}, line width=1pt, mark=none},
+{color={rgb,1:red,0.9290;green,0.6940;blue,0.1250}, line width=1pt, mark=none},
+{color={rgb,1:red,0.4940;green,0.1840;blue,0.5560}, line width=1pt, mark=none},
+{color={rgb,1:red,0.4660;green,0.6740;blue,0.1880}, line width=1pt, mark=none},
+{color={rgb,1:red,0.3010;green,0.7450;blue,0.9330}, line width=1pt, mark=none},
+{color={rgb,1:red,0.6350;green,0.0780;blue,0.1840}, linew idth=1pt, mark=none}
+}
+
+\newlength{\figwidth}
+\setlength{\figwidth}{2.5in}
+\newlength{\figheight}
+\setlength{\figheight}{1.8in}
+% Specify default values for axes
+\pgfplotsset{every axis/.style={
+cycle list name=bw,
+width=\figwidth,
+height=\figheight,
+%axis lines=middle,
+xlabel=$t$,
+minor tick num = 1,
+%grid=both,
+%enlargelimits=0.2,
+%grid=none,
+legend style={legend columns=1,
+  cells={anchor=west},
+  font=\footnotesize,
+  rounded corners=1pt},
+legend pos=south east }
+}
+
+%% Binary number formatting
+% Example:
+%   \def\myarray{{15, 13, 12, 11, 10, 9}}
+%   \pgfmathrandominteger{\idx}{0}{5}
+%   \pgfmathsetmacro\result{\myarray[\idx]}
+\newcommand{\printBinaryBits}[3]{%
+  \texttt{\bfseries%
+    \foreach \i in {#2,...,#3}{%
+      \bitsetGet{#1}{\i}%
+    }%
+  }%
+}
+\newcommand{\printBinary}[1]{%
+  \pgfmathsetmacro\printBinaryResult{#1}%
+  \bitsetSetDec{binaryNumber}{\printBinaryResult}%
+  \mbox{%
+    \printBinaryBits{binaryNumber}{7}{4} %
+    \printBinaryBits{binaryNumber}{3}{0}%
+  }%
+}
+\newcommand{\printBinaryFour}[1]{%
+  \pgfmathsetmacro\printBinaryResult{#1}%
+  \bitsetSetDec{binaryNumber}{\printBinaryResult}%
+  \mbox{%
+    % \printBinaryBits{binaryNumber}{7}{4} %
+    \printBinaryBits{binaryNumber}{3}{0}%
+  }%
+}
+\newcommand{\printBinaryFourWithCarry}[1]{%
+  %\pgfmathparse{int(floor( #1 / 2^(4)))}
+  \pgfmathsetmacro\printBinaryResult{#1}%
+  \bitsetSetDec{binaryNumber}{\printBinaryResult}%
+  \mbox{%
+    \printBinaryBits{binaryNumber}{4}{4}\,%
+    \printBinaryBits{binaryNumber}{3}{0}
+  }%
+}
+\newcommand{\printBinarySixteen}[1]{%
+  \pgfmathsetmacro\printBinaryResult{#1}%
+  \bitsetSetDec{binaryNumber}{\printBinaryResult}%
+  \mbox{%
+    \printBinaryBits{binaryNumber}{15}{12}\,%
+    \printBinaryBits{binaryNumber}{11}{8}\,%
+    \printBinaryBits{binaryNumber}{7}{4}\,%
+    \printBinaryBits{binaryNumber}{3}{0}%
+  }%
+} 

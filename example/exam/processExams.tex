@@ -1,0 +1,45 @@
+%%% THIS IS FOR PROCESS EXAMS -- IN THE EXAM BASE DIR
+%% load files
+\InputIfFileExists{\CommonRootDir/packages_macros.tex}{}{}
+\ifexam
+   % exam coverpage
+   \input{\CommonRootDir/exam_coverpage}
+\else
+   % Homework coverpage
+   \input{\CommonRootDir/hw_coverpage} % FOR HOMEWORK
+\fi
+
+\begin{document}
+\AMCrandomseed{123456789} % <-- Change this as needed (year to year)
+\pgfmathsetseed{2056} % <-- most of my random numbers come from this seed!
+%\FPseed=129
+
+% add in questions
+\input{\ThisInstanceDir/questions}
+
+
+%\cleargroup{questions}
+%\copygroup[4]{all}{questions}
+% then insert questions ... this will choose the SAME questions for all tests
+
+\begin{examcopy}[1]
+\coverpage{}
+\setcounter{figure}{0}
+%\vspace*{\stretch{1}}
+\studentidarea{}
+\ifexam
+    \newpage
+\else
+\EmptyInstructions%
+    \bigskip
+\fi
+
+%
+\cleargroup{questions}
+%\copygroup[2]{all}{questions}
+\FormTestQuestions
+\insertgroup{questions}
+\AMClabel{lastpage}
+%\AMCcleardoublepage
+\MYcleardoublepage
+\end{examcopy}

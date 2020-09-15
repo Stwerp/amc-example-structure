@@ -1,0 +1,28 @@
+% use \pts{} to indicate the number of points
+
+%% Putting multiple questions together in the file will keep them together as a single block.
+% Using the AMCLABEL command, questions can be referred to with other questions
+% Also, this is an open question
+
+\begin{question}{02-WriteEquation} \pts{4} \AMClabel{q-WriteEquation}
+  Write an equation for a \emph{recursive} digital system.
+  \AMCOpen{lines=2,
+    dots=false,  }{%
+    \wrongchoice[W]{w}\scoring{0}%
+    \wrongchoice[P]{p}\scoring{2}%
+    \correctchoice[C]{c}\scoring{4}%
+  }
+\end{question}
+
+
+\begin{question}{02-DrawSystem} \pts{3}
+  For the equation you wrote in question \AMCref{q-WriteEquation}, draw the system using signal flow graphs.
+  \AMCOpen{lines=4,
+    dots=false,  }{%
+    \wrongchoice[W]{w}\scoring{0}%
+    \wrongchoice[P]{p}\scoring{1}%
+    \correctchoice[C]{c}\scoring{3}%
+  }
+\end{question}
+
+  

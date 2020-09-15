@@ -1,0 +1,18 @@
+\newcommand{\CodeDir}{\QuestionBaseDir/code} %<-- Create directory for C code
+\newcommand{\putc}[1]{\lstinputlisting{\CodeDir/#1.c}} %<-- Include a c file
+% use \pts{} to indicate the number of points
+\begin{question}{exam2} \pts{3}
+  What will be the output of the following program?
+  \putc{exam2}
+%  \AMCOpen{lines=3,
+%  dots=false,  }{\wrongchoice[W]{w}\scoring{0}\wrongchoice[P]{p}\scoring{1}\correctchoice[C]{c}\scoring{2}}
+  \begin{choices}
+    \correctchoice{Second String, }
+    \wrongchoice{Second String, Fourth String, }
+    \wrongchoice{First String, }
+    \wrongchoice{First String, Third String, }
+    \end{choices}
+\end{question}
+% ANSWER:
+% Second String
+% 

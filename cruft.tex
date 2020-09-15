@@ -1,0 +1,67 @@
+% List of important package:
+\usepackage[cmex10]{amsmath}
+\usepackage{amssymb}
+
+% plotting
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=newest}
+% photo-copy safe color
+\pgfplotscreateplotcyclelist{prnok}{%
+{color={rgb,255:red,128;green,128;blue,128}, mark=none, line width=0.5pt}, 
+{color={rgb,255:red,159;green,159;blue,159},mark=none, line width=0.5pt},
+{color={rgb,255:red,191;green,191;blue,191},mark=none, line width=0.5pt},
+}%
+% BW style plot cycles
+\pgfplotscreateplotcyclelist{bw}{%
+  {black!85, mark=none, line width=1.2pt},
+  {black!85, mark=none, line width=1.2pt},
+  {black!85, mark=none, line width=1.2pt}, 
+{black!62,mark=none, line width=1pt},
+{black!40, mark=none, line width=1pt},
+{black, mark=none, line width=1pt, dashed}, 
+{black!55,mark=none, line width=1pt, dashed},
+{black!25, mark=none, line width=1pt, dashed},
+}%
+% MATLAB color plot cycles
+\pgfplotscreateplotcyclelist{matlab}{%
+{color={rgb,1:red,0;green,0.4470;blue,0.7410}, line width=1pt, mark=none},
+{color={rgb,1:red,0.8500;green,0.3250;blue,0.0980}, line width=1pt, mark=none},
+{color={rgb,1:red,0.9290;green,0.6940;blue,0.1250}, line width=1pt, mark=none},
+{color={rgb,1:red,0.4940;green,0.1840;blue,0.5560}, line width=1pt, mark=none},
+{color={rgb,1:red,0.4660;green,0.6740;blue,0.1880}, line width=1pt, mark=none},
+{color={rgb,1:red,0.3010;green,0.7450;blue,0.9330}, line width=1pt, mark=none},
+{color={rgb,1:red,0.6350;green,0.0780;blue,0.1840}, linew idth=1pt, mark=none}
+}
+
+\newlength{\figwidth}
+\setlength{\figwidth}{2.5in}
+\newlength{\figheight}
+\setlength{\figheight}{1.8in}
+% Specify default values for axes
+\pgfplotsset{every axis/.style={
+cycle list name=bw,
+width=\figwidth,
+height=\figheight,
+%axis lines=middle,
+xlabel=$t$,
+minor tick num = 1,
+%grid=both,
+%enlargelimits=0.2,
+%grid=none,
+legend style={legend columns=1,
+  cells={anchor=west},
+  font=\footnotesize,
+  rounded corners=1pt},
+legend pos=south east }
+}
+
+
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

@@ -1,0 +1,148 @@
+% Cover page for an exam
+% Needs the following variables:
+% For an Exam:
+% \newcommand{\examtitle}{Exam \#1}
+% \newcommand{\courseterm}{Fall 2017}
+% \newcommand{\courseid}{ECE 251}
+% \newcommand{\coursetitle}{Engineering Programming I}
+% \newcommand{\instructor}{Stewart J.~Thomas}
+% \newcommand{\examstarttime}{12:00 pm}
+% \newcommand{\examendtime}{1:15 pm}
+% \newcommand{\examdate}{Monday}
+% \newcommand{\examduration}{50 minutes}
+% %
+% \newcommand{\additionalinstructions}{%
+% This portion is due at the time stated.
+
+% The take-home portion is posted online and due at the start of class on Monday.
+% }
+
+% packages
+\usepackage{graphicx}
+\usepackage{pifont}
+\usepackage{xparse}
+
+% definitions
+\newcommand{\tickno}{\ding{111}\,}%
+\newcommand{\tickyes}{\ding{52}\,}%
+
+
+% command from:
+% https://tex.stackexchange.com/questions/88616/fbox-around-type-area
+% requires xparse
+\newsavebox{\fminipagebox}
+\NewDocumentEnvironment{fminipage}{m O{\fboxsep}}
+ {\par\kern#2\noindent\begin{lrbox}{\fminipagebox}
+  \begin{minipage}{#1}\ignorespaces}
+ {\end{minipage}\end{lrbox}%
+  \makebox[#1]{%
+    \kern\dimexpr-\fboxsep-\fboxrule\relax
+    \fbox{\usebox{\fminipagebox}}%
+    \kern\dimexpr-\fboxsep-\fboxrule\relax
+  }\par\kern#2
+ }
+ 
+ \newcommand{\boxfilled}{ {\raisebox{-.5ex}{\includegraphics[height=2ex]{\CommonRootDir/boxfilled.png}}} }
+\newcommand{\boxticked}{ \raisebox{-.5ex}{\includegraphics[height=2ex]{\CommonRootDir/boxticked.png}} }
+%\newcommand{\boxticked}{ }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\ExamTopLine}{%
+\vspace*{-3em}%\noindent
+\hspace*{-1em}%
+\makebox[0pt][l]{\parbox{.5\textwidth}
+% {\large\sl College of Engineering\\[0mm]\includegraphics[width=65mm]{\CommonRootDir/Signature_HorizStacked_Full.eps}}}
+% {\large\sl College of Engineering\\[0mm]\includegraphics[height=15mm]{\CommonRootDir/BULogo_Blue_CMYK.eps}}}
+{\includegraphics[height=15mm]{\CommonRootDir/BULogo_Blue_CMYK.eps}}}%\\[0mm]\large\sl College of Engineering}}
+% 
+\vspace{-15mm}
+\hfill
+\begin{tabular}{r}
+  \LARGE\bf \examtitle\\[2mm]
+  \normalsize\rm Term: \courseterm %\hspace{2mm}
+\end{tabular}
+% 
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\HonorCode}{%
+\vspace{5em}
+%\noindent
+\begin{fminipage}{\linewidth}
+\textbf{HONOR CODE STATEMENT}
+\begin{center}
+  \vspace*{-1em}%
+%\rule{\textwidth}{0.5pt} \\[.5em]
+%\rule{\textwidth}{0.5pt}\\[.5em]
+{\sl In completing this assignment, I upheld the Bucknell honor code.\\[.5em] }
+%\raisebox{3mm}{\hbox{Name:}} \rule{.35\textwidth}{0.5pt} \hfill 
+\hfill \raisebox{3mm}{\hbox{Signature:}} \rule{.35\textwidth}{0.5pt}
+\end{center}
+\end{fminipage}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\ExamInfo}{%
+%\vspace{10mm}
+\bigskip
+\noindent
+\begin{fminipage}{\linewidth}
+\begin{tabular*}{\linewidth}[t]{@{\extracolsep{\fill}} llrl}
+Course ID: & \textbf{\courseid} \\
+Course Title: & \coursetitle \\
+Instructor: & \instructor \\
+Date: & \examdate & Start time: & \examstarttime \\
+Exam Duration: & \examduration  & End time: & \examendtime \\
+Number of pages: & \AMCpageref{lastpage} (including this sheet)
+%Number of pages: & 5 (including this sheet)
+\end{tabular*}
+%\vspace{1em}
+\\[1em]
+\underline{Additional Instructions:}\\[.25em]
+\additionalinstructions{}
+\end{fminipage}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifCustomAuthorizedAid
+\newcommand{\AuthorizedAid}{\customAuthorizedAid}
+\else
+\newcommand{\AuthorizedAid}{%
+\bigskip
+\noindent
+\textbf{Summary of Authorized Aid:}\\
+\begin{minipage}{\linewidth}
+\begin{tabular*}{\linewidth}[t]{llll}
+%
+Paper & \tickno No & \tickyes Yes, & \tickyes Blank, scratch paper \\
+&&& \tickyes Notesheet \\
+%
+Electronic Devices & \tickno No & \tickyes Yes, & \tickyes Handheld calculator\\ &&& \hspace{2ex} (TI-89, TI-83, HP-??, etc.) \\
+&&& \tickno Cell phone \\
+&&& \tickno Computer \\
+\textit{Your} Textbook & \tickno No & \tickyes Yes \\
+\textit{Your} Printouts \& notes & \tickno No & \tickyes Yes \\
+Access online materials & \tickyes No & \tickno Yes \\
+\end{tabular*}
+\textbf{Unauthorized Aid:}\\
+Any communication concerning exam content with another student.
+
+Working with other students or sharing work.
+
+\vspace{2em}
+For the take-home portion, you are allowed (and encouraged) to use a computer to aid you. However, you are not allowed to share work with others or use the Internet to search for answers. You are only allowed to access the materials posted to the course website.
+\end{minipage}
+}
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BEGIN:
+\newcommand{\coverpage}{%
+%
+\ExamTopLine{}
+{\ifcsname NoHonorCode\endcsname {\vspace{4em}} \else \HonorCode{} \fi}
+\ExamInfo{}
+\AuthorizedAid{}
+}

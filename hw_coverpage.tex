@@ -1,0 +1,107 @@
+% Header for a homework assignment
+% This needs the following:
+% \newcommand{\CourseNum}{ECE251}
+% \newcommand{\CourseTitle}{Engineering Programming I}
+% \newcommand{\HWNum}{1}
+% \renewcommand{\courseterm}{Fall 2017}
+% additionally, assign a value to \groupwork
+% \groupworktrue -or -\groupworkfalse
+
+% packages
+\usepackage{graphicx}
+\usepackage{pifont}
+\usepackage{xparse}
+
+% definitions
+\newcommand{\tickno}{\ding{111}\,}%
+\newcommand{\tickyes}{\ding{52}\,}%
+
+
+% command from:
+% https://tex.stackexchange.com/questions/88616/fbox-around-type-area
+% requires xparse
+\newsavebox{\fminipagebox}
+\NewDocumentEnvironment{fminipage}{m O{\fboxsep}}
+ {\par\kern#2\noindent\begin{lrbox}{\fminipagebox}
+  \begin{minipage}{#1}\ignorespaces}
+ {\end{minipage}\end{lrbox}%
+  \makebox[#1]{%
+    \kern\dimexpr-\fboxsep-\fboxrule\relax
+    \fbox{\usebox{\fminipagebox}}%
+    \kern\dimexpr-\fboxsep-\fboxrule\relax
+  }\par\kern#2
+ }
+ 
+ \newcommand{\boxfilled}{ {\raisebox{-.5ex}{\includegraphics[height=2ex]{\CommonBaseDir/boxfilled.png}}} }
+\newcommand{\boxticked}{ \raisebox{-.5ex}{\includegraphics[height=2ex]{\CommonBaseDir/boxticked.png}} }
+%\newcommand{\boxticked}{ }
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\ifhwquiz
+
+\else
+\fi
+\newcommand{\HWTopLine}{%
+\vspace*{-3em}\hspace*{-1em}
+{\textbf{\large\CourseNum}: {\large\CourseTitle} }
+\hfill
+\begin{tabular}{r}
+\ifhwquiz
+  \textit{Quiz} \LARGE\bf \#\HWNum\\[2mm]
+\else
+  \LARGE\bf Homework \#\HWNum\\[2mm]
+\fi
+\normalsize\rm \courseterm %\hspace{2mm}
+\end{tabular}
+%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\HonorCode}{%
+%\vspace{5em}
+%\noindent
+\begin{fminipage}{\linewidth}
+\textbf{HONOR CODE STATEMENT}
+\begin{center}
+  \vspace*{-1em}%
+%\rule{\textwidth}{0.5pt} \\[.5em]
+%\rule{\textwidth}{0.5pt}\\[.5em]
+{\sl In completing this assignment, I upheld the Bucknell honor code.\\[.5em]}
+%\raisebox{3mm}{\hbox{Name:}} \rule{.35\textwidth}{0.5pt} \hfill 
+\raisebox{3mm}{\hbox{Signature:}} \rule{.35\textwidth}{0.5pt}
+\end{center}
+\end{fminipage}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\HonorCodeGroup}{%
+\begin{fminipage}{\linewidth}
+\textbf{HONOR CODE}
+\begin{center}
+\rule{\textwidth}{0.5pt} \\[.5em]
+\rule{\textwidth}{0.5pt}\\[.5em]
+\raisebox{3mm}{\hbox{Name:}} \rule{.35\textwidth}{0.5pt} \hfill 
+\raisebox{3mm}{\hbox{Signature:}} \rule{.35\textwidth}{0.5pt}\\[.5em]
+\raisebox{3mm}{\hbox{Name:}} \rule{.35\textwidth}{0.5pt} \hfill 
+\raisebox{3mm}{\hbox{Signature:}} \rule{.35\textwidth}{0.5pt}
+\end{center}
+\end{fminipage}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BEGIN:
+\newcommand{\coverpage}{%
+%
+\HWTopLine{}
+{\ifcsname NoHonorCode\endcsname {} \else {
+  \ifgroupwork
+    \HonorCodeGroup{}
+  \else
+    \HonorCode{}
+  \fi }
+\fi}
+
+}

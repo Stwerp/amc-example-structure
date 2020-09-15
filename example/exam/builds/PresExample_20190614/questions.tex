@@ -1,0 +1,31 @@
+% include questions here
+
+% Lots of options here!
+
+% In general, create groups and add questions to it
+% \element{GROUPNAME}{\inputQ{path/to/question}}
+
+\element{unita}{\inputQ{IncludeCCodeFile}}
+\element{unita}{\inputQ{MakeSmallerQuestionsCombined}}
+\element{unita}{\inputQ{labelandreferencequestions}}
+\element{unitb}{\inputQ{randomarray}}
+
+\newcommand{\FormTestQuestions}{%
+\copygroup[2]{unita}{questions}
+\copygroup{unitb}{questions}
+}
+
+% The order is defined in the processexams.tex file.
+% For this project, each instance of an exam will:
+%   1) clear the "questions" group
+%   2) call the command "FormTestQuestions"
+%   3) insert the group "questions"
+%   4) clear a double page (to enable double-sided printing)
+%
+% So you need to create a command called "FormTestQuestions" that will
+% copy over whatever want into the "questions" group.
+% In THIS FILE's case, I am selecting 2 (out of the three I have defined) questions
+%  from the "unita" group, and all questions from the "unitb" group. The order of
+%  the questions on the output will be completely intermixed.
+
+% The other option is to change the process exams to to call the command "FormTestQuestions" and then "InsertTestQuestions". This will allow you to do things like "\insertgroup{unita} \insertgroup{unitb}" where questions from unita will appear before questions from unitb and not be intermixed.

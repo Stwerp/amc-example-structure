@@ -1,0 +1,23 @@
+% use \pts{} to indicate the number of points
+
+% Create random variables, then define the mathematical relation between them
+% Variables:
+\pgfmathrandominteger{\rA}{2}{5}
+% \pgfmathrandominteger{\rB}{2}{10}
+% 
+\pgfmathsetmacro\rAA{( 2.0 * \rA) + 2}
+\pgfmathsetmacro\rBB{\rAA - 4}
+
+
+% Z transform of discrete sequence
+\begin{question}{DFT} \pts{6}
+Find the Discrete Fourier Transform (DFT) of the following sequence.
+\[ x[n] = \{ \quad \rA \quad \quad 1 \quad \quad \rA \quad \quad 1 \} \]
+  \begin{choices}
+    \correctchoice{ $ X[k] = \{ \quad \rAA \quad \quad 0 \quad \quad \rBB \quad \quad 0 \} $ }
+    \wrongchoice{ $ X[k] = \{ \quad \rBB \quad \quad 0 \quad \quad \rBB \quad \quad 0 \} $ }
+    \wrongchoice{ $ X[k] = \{ \quad \rAA \quad \quad 0 \quad \quad \rBB - j \quad \quad 0 $  }
+    \wrongchoice{ $ X[k] = \{ \quad 2 + 2j \quad \quad \rBB\quad \quad 2 - 2j  \quad \quad 0 \} $ }
+  \end{choices}
+\vspace*{8em}
+\end{question}
